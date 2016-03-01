@@ -31,6 +31,17 @@ module.exports = function (grunt) {
       ]);
     });
 
+  // ビルド
+  grunt.registerTask('build', csl.info('ビルドを行い dist フォルダに配備します'), [
+      'clean:build',
+      'copy:build_index',
+      'useminPrepare',
+      'concat',
+      'cssmin',
+      'uglify',
+      'usemin'
+    ]);
+
   /**************************************************/
   /*************** Private Commands *****************/
   /**************************************************/
