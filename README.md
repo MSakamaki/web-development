@@ -164,6 +164,7 @@ npm i -D grunt-usemin
  + [copy](https://github.com/MSakamaki/web-development/blob/master/config/copy.js)
  + [usemin](https://github.com/MSakamaki/web-development/blob/master/config/usemin.js)
  + [useminPrepare](https://github.com/MSakamaki/web-development/blob/master/config/useminPrepare.js)
+ + [uglify](https://github.com/MSakamaki/web-development/blob/master/config/uglify.js)
  + [filerev](https://github.com/MSakamaki/web-development/blob/master/config/filerev.js)
 
  + gruntfile.js
