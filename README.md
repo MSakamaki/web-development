@@ -46,9 +46,44 @@
 
 ```sh
 # gruntくむときに最初に入れとくもの
-npm install --save-dev grunt load-grunt-tasks time-grunt load-grunt-configs chalk
 # global npm modules
 npm intall grunt -g
+
+```
+
+#### フォルダのテンプレートを作成
+
+テンプレートを取得する
+
+```sh
+git clone https://github.com/MSakamaki/web-development.git -b template
+cd web-development
+npm install
+```
+
+以下のモジュールはインストール済み
+
+ + `grunt` `load-grunt-tasks` `time-grunt` `load-grunt-configs` `chalk`
+
+
+フォルダ構成
+
+```sh
+.
+├── Gruntfile.js       # 開発タスク(grunt)
+├── README.md
+├── lib                # 開発タスク用サブ部品
+│   └── util.js
+├── package.json
+└── public             # Webアプリケーション
+    ├── css
+    │   ├── main.css
+    │   └── sub.css
+    ├── favicon.ico
+    ├── index.html
+    └── js
+        ├── main.js
+        └── sub.js
 
 ```
 
@@ -59,11 +94,45 @@ npm intall grunt -g
 
 今回は`browsersync`
 
-`grunt server`で開発環境を立ち上げる
+`grunt server`で開発環境を立ち上げるのを目標に
 
- ```sh
+```sh
 
- npm i -D grunt-browser-sync
+npm i -D grunt-browser-sync
+
+```
+
+```sh
+.
+├── Gruntfile.js
+├── README.md
+├── config
+│   └── browserSync.js    # <= 新しく追加
+├── lib
+│   └── util.js
+├── package.json
+└── public
+    ├── css
+    │   ├── main.css
+    │   └── sub.css
+    ├── favicon.ico
+    ├── index.html
+    └── js
+        ├── main.js
+        └── sub.js
+```
+
+ + [browserSync.js](https://github.com/MSakamaki/web-development/blob/master/config/browserSync.js)
+
+ + gruntfile.js
+
+```javascript
+// 開発開始
+grunt.registerTask('serve',
+  csl.info('ライブリロード開発を行います'),
+  [
+    'browserSync:dev',
+  ]);
 
 ```
 
@@ -90,6 +159,30 @@ npm i -D grunt-filerev
 npm i -D grunt-usemin
 
 ```
+
+ + [clean](https://github.com/MSakamaki/web-development/blob/master/config/clean.js)
+ + [copy](https://github.com/MSakamaki/web-development/blob/master/config/copy.js)
+ + [usemin](https://github.com/MSakamaki/web-development/blob/master/config/usemin.js)
+ + [useminPrepare](https://github.com/MSakamaki/web-development/blob/master/config/useminPrepare.js)
+ + [filerev](https://github.com/MSakamaki/web-development/blob/master/config/filerev.js)
+
+ + gruntfile.js
+
+```javascript
+// ビルドタスク
+grunt.registerTask('build', csl.info('ビルドを行い dist フォルダに配備します'), [
+    'clean:build',
+    'copy:build_index',
+    'useminPrepare',
+    'concat',
+    'cssmin',
+    'uglify',
+    'filerev:dist',
+    'usemin'
+  ]);
+
+```
+
 
 #### コードスタイルチェック
 
