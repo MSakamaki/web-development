@@ -47,7 +47,7 @@
 ```sh
 # gruntくむときに最初に入れとくもの
 # global npm modules
-npm intall grunt -g
+npm intall grunt-cli -g
 
 ```
 
