@@ -39,6 +39,7 @@ module.exports = function (grunt) {
       'concat',
       'cssmin',
       'uglify',
+      'filerev:dist',
       'usemin'
     ]);
 
